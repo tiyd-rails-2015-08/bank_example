@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Expenses for <%= @branch.name %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Payee</th>
+      <th>Account</th>
+      <th>Client</th>
+      <th>Spent on</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @branch.clients.each do |client| %>
+      <% client.accounts.each do |account| %>
+        <% account.expenses.each do |expense| %>
+          <tr>
+            <td><%= expense.payee %></td>
+            <td><%= expense.account.name %></td>
+            <td><%= expense.account.client.name %></td>
+            <td><%= expense.account.client.branch.name %></td>
+            <td><%= expense.spent_on %></td>
+            <td><%= link_to 'Show', expense %></td>
+            <td><%= link_to 'Edit', edit_expense_path(expense) %></td>
+            <td><%= link_to 'Destroy', expense, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Expense', new_expense_path %>
