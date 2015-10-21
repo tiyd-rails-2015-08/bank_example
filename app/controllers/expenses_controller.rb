@@ -3,12 +3,8 @@ class ExpensesController < ApplicationController
 
   def search
     if params[:search]
-      q = "%#{params[:search]}%"
-      @expenses = Expense.joins(account: {client: :branch}).
-          where("payee LIKE ? OR accounts.name LIKE ? OR clients.name LIKE ? OR branches.name LIKE ?", q, q, q, q)
-
-      # expenses = Expense.arel_table
-      # @expenses = Expense.where(expenses[:payee].matches("%#{params[:search]}%"))
+      @expenses = Expense.search_results(params[:search])
+      MakeCsvJob.set(wait: 10.seconds).perform_later(params[:search])
     end
   end
 
