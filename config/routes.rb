@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root 'expenses#index'
   resources :expenses do
     collection do
@@ -6,6 +7,8 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
+
+  resources :branches, only: :show
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

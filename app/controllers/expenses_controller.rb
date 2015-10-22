@@ -15,6 +15,8 @@ class ExpensesController < ApplicationController
   # GET /expenses
   def index
     @expenses = Expense.limit(100)
+
+    #@first_expense = Expense.first
   end
 
   # GET /expenses/1
