@@ -27,6 +27,8 @@ gem 'delayed_job_active_record'
 gem 'daemons'
 
 gem 'jbuilder'
+# 
+# gem 'mailgun'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

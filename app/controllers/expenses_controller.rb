@@ -15,7 +15,9 @@ class ExpensesController < ApplicationController
   # GET /expenses
   def index
     @expenses = Expense.limit(100)
-
+    if params[:email]
+      ReportMailer.looked_at_report(params[:email]).deliver_later
+    end
     #@first_expense = Expense.first
   end
 
